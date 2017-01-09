@@ -37,7 +37,7 @@ environment variable.
 
 To get GLib for Windows, please see: http://www.gtk.org/download/windows.php
 
-The GTK project recommends using MSYS, but it's also possible to build it from
+The GTK project recommends using MSYS2, but it's also possible to build it from
 source using Visual Studio, following the instructions on the Wiki:
 
 https://wiki.gnome.org/Projects/GTK+/Win32/MSVCCompilationOfGTKStack#GLib

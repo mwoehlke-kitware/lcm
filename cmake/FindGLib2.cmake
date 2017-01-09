@@ -4,7 +4,10 @@ include(FindPackageHandleStandardArgs)
 
 #------------------------------------------------------------------------------
 function(_glib2_find_include VAR HEADER)
-  list(APPEND CMAKE_PREFIX_PATH $ENV{GLIB_PATH})
+  if(DEFINED ENV{GLIB_PATH})
+    # Also tolerate MSYS2' screwy split-prefix install
+    list(APPEND CMAKE_PREFIX_PATH $ENV{GLIB_PATH} $ENV{GLIB_PATH}/usr)
+  endif()
 
   set(_paths)
   foreach(_lib ${ARGN})
@@ -21,7 +24,10 @@ endfunction()
 
 #------------------------------------------------------------------------------
 function(_glib2_find_library VAR LIB)
-  list(APPEND CMAKE_PREFIX_PATH $ENV{GLIB_PATH})
+  if(DEFINED ENV{GLIB_PATH})
+    # Also tolerate MSYS2' screwy split-prefix install
+    list(APPEND CMAKE_PREFIX_PATH $ENV{GLIB_PATH} $ENV{GLIB_PATH}/usr)
+  endif()
 
   find_library(GLIB2_${VAR}_LIBRARY NAMES ${LIB}-2.0 ${LIB})
   mark_as_advanced(GLIB2_${VAR}_LIBRARY)
